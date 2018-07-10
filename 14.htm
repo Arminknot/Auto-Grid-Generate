@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        @font-face {
+            src: url("fonts/Mj flow.ttf");
+            font-family: mj;
+        }
+        
+        @font-face {
+            src: url("fonts/Yek.ttf");
+            font-family: yek;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #grid {
+            font-family: mj;
+            color: #555;
+            /* border: 1px solid red;*/
+            /*width: 1000px;*/
+            margin: 100px auto;
+            /*padding: 10px;*/
+            /*padding-left: 20px;*/
+            overflow: hidden;
+        }
+        
+        #grid>.col {
+            width: 200px;
+            /*height: 1000px;*/
+            float: left;
+            margin-right: 5px;
+        }
+        
+        #grid>.col>.item {
+            overflow: hidden;
+            cursor: zoom-in;
+            border: 0.5px solid #ccc;
+            /*box-shadow: 0 0 10px 1px #ccc;*/
+            border-radius: 10px;
+            margin-bottom: 5px;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        #grid>.col>.item>img {
+            width: 100%;
+            display: block;
+        }
+        
+        #grid>.col>.item:hover>.mask {
+            transition: 0.5s;
+            transform: rotateY(0deg);
+            opacity: 1;
+        }
+        
+        #grid>.col>.item>.mask {
+            transition: 0.5s;
+            transform: rotateY(90deg);
+            transform-origin: 0% 0%;
+            direction: rtl;
+            text-align: center;
+            background: rgba(204, 204, 204, 0.719);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            transform: 0.3s;
+            opacity: 0;
+        }
+        
+        #grid>.col>.item>.mask>h2 {
+            font-weight: 500;
+            color: green;
+            margin: 10px 0;
+        }
+        
+        #grid>.col>.item>.mask>span {
+            display: block;
+            background: orange;
+            color: #fff;
+            margin: 10px 0;
+            padding: 5px 1px;
+        }
+        
+        #grid>.col>.item>.mask>a {
+            text-decoration: none;
+            color: palevioletred;
+        }
+        
+        #overlay {
+            position: fixed;
+            background: radial-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+            top: 0;
+            left: 0;
+            text-align: center;
+        }
+        
+        #overlay.show {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #overlay.hide {
+            overflow: hidden;
+            width: 0%;
+            height: 0%;
+        }
+        
+        #pop {
+            margin: 100px auto;
+            width: 500px;
+        }
+        
+        #pop>.close {
+            cursor: pointer;
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin: 10px auto;
+            font-family: tahoma;
+            font-size: 25px;
+            color: red;
+        }
+        
+        #pop>img {
+            width: 90%;
+            border-radius: 5px;
+            box-shadow: 0 0 350px 1px #ccc;
+        }
+        
+        #pop>p {
+            font-family: yek;
+            background: linear-gradient(#777, #ccc);
+            width: 90%;
+            padding: 10px 0;
+            margin: 2px auto;
+        }
+        
+        .item.hide {
+            opacity: 0;
+        }
+        
+        .item.show {
+            animation: anim1 0.3s;
+        }
+        
+        @keyframes anim1 {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            40% {
+                opacity: 0.5;
+                transform: scale(1.17);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="grid">
+
+
+
+    </div>
+
+    <div id="overlay" class="hide">
+        <div id="pop" class="hide">
+            <span class="close" onclick="closeAll()"> X </span>
+            <img id="big" src="img/01.jpg">
+            <p>...توضیحات بیشتر</p>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+<script>
+    function popup(i) {
+        overlay.className = "show";
+        popup.className = "show";
+        big.src = "img/" + i + ".jpg";
+    }
+
+    function closeAll() {
+        overlay.className = "hide";
+        popup.className = "hide";
+    }
+
+
+    //===========================================================
+
+    arz = window.innerWidth;
+    arz_grid = (arz - 60);
+    tedad_ashar = (arz_grid / 200);
+    tedadrond = Math.floor(tedad_ashar);
+    num = Math.floor((arz_grid - (5 * tedadrond)) / 200);
+
+
+    jim = (num * 5) + (num * 200);
+
+    grid.style.width = jim + "px";
+
+    function create_col(i) {
+        cocol = document.createElement("div");
+        cocol.className = "col";
+        grid.appendChild(cocol);
+        return cocol;
+    }
+
+
+
+    for (p = 0; p < num; p++) {
+        create_col(p);
+    }
+
+    //===========================================================
+    function create_item(image, title, des, price) {
+        it = document.createElement("div");
+        it.className = "item hide";
+
+        im = document.createElement("img");
+        im.src = "img/" + image + ".jpg"
+
+        mas = document.createElement("mask");
+        mas.className = "mask";
+
+        h = document.createElement("h2");
+        h.innerHTML = title;
+
+        par = document.createElement("p");
+        par.innerHTML = des;
+
+        sp = document.createElement("span");
+        sp.innerHTML = price;
+
+        lin = document.createElement("a");
+        lin.innerHTML = "ادامه";
+        lin.href = "#";
+
+        mas.appendChild(h);
+        mas.appendChild(par);
+        mas.appendChild(sp);
+        mas.appendChild(lin);
+
+        it.appendChild(im);
+        it.appendChild(mas);
+
+        return it;
+    }
+
+    // auto generate-------------------------------------
+
+    cols = document.querySelectorAll("#grid>.col");
+
+    function attach(i) {
+
+        p1 = (i % 21 + 1);
+        p2 = "آیتم" + (i + 1);
+        p3 = "توضیحات آیتم" + (i + 1);
+        p4 = Math.round(Math.random() * 100000 + 1000) + "ریال";
+
+        el = create_item(p1, p2, p3, p4);
+
+        el.onclick = function() {
+            popup(i + 1)
+        }
+
+        el.className = "item show";
+
+        cols[i % num].appendChild(el);
+    }
+
+    for (j = 0; j < 61; j++) {
+
+        setTimeout("attach(" + j + ")", j * 300);
+
+    }
+</script>
+
+
+</html>
