@@ -10,7 +10,7 @@
         }
         
         @font-face {
-            src: url("fonts/Yek.ttf");
+            src: url("fonts/Yekan.ttf");
             font-family: yek;
         }
         
@@ -27,7 +27,7 @@
             margin: 100px auto;
             /*padding: 10px;*/
             /*padding-left: 20px;*/
-            overflow: hidden;
+            /*overflow: hidden;*/
         }
         
         #grid>.col {
@@ -65,7 +65,7 @@
             transform-origin: 0% 0%;
             direction: rtl;
             text-align: center;
-            background: rgba(204, 204, 204, 0.719);
+            background: rgb(0, 0, 0);
             position: absolute;
             top: 0;
             left: 0;
@@ -73,17 +73,18 @@
             height: 100%;
             transform: 0.3s;
             opacity: 0;
+            color: white;
         }
         
         #grid>.col>.item>.mask>h2 {
+            margin-top: 5%;
             font-weight: 500;
-            color: green;
-            margin: 10px 0;
+            color: rgb(0, 192, 0);
         }
         
         #grid>.col>.item>.mask>span {
             display: block;
-            background: orange;
+            background: rgb(161, 6, 182);
             color: #fff;
             margin: 10px 0;
             padding: 5px 1px;
@@ -91,7 +92,7 @@
         
         #grid>.col>.item>.mask>a {
             text-decoration: none;
-            color: palevioletred;
+            color: rgb(22, 218, 201);
         }
         
         #overlay {
@@ -148,21 +149,53 @@
         }
         
         .item.show {
-            animation: anim1 0.3s;
+            animation: anim1 0.5s;
         }
         
         @keyframes anim1 {
             0% {
                 opacity: 0;
-                transform: scale(0.3);
+                transform: scale(0) translateY(-1000px);
+            }
+            10% {
+                opacity: 0.1;
+                transform: scale(0.1)translateY(-900px);
+            }
+            20% {
+                opacity: 0.2;
+                transform: scale(0.2)translateY(-800px);
+            }
+            30% {
+                opacity: 0.3;
+                transform: scale(0.3)translateY(-700px);
             }
             40% {
+                opacity: 0.4;
+                transform: scale(0.4) translateY(-600px);
+            }
+            50% {
                 opacity: 0.5;
-                transform: scale(1.17);
+                transform: scale(0.5)translateY(-500px);
+            }
+            60% {
+                opacity: 0.6;
+                transform: scale(0.6) translateY(-400px);
+            }
+            70% {
+                opacity: 0.7;
+                transform: scale(0.7)translateY(-300px);
+            }
+            80% {
+                opacity: 0.8;
+                transform: scale(0.8) translateY(-200px);
+            }
+            90% {
+                opacity: 0.9;
+                transform: scale(0.9)translateY(-100px);
             }
             100% {
                 opacity: 1;
-                transform: scale(1)
+                transform: scale(1) translateY(0px);
             }
         }
     </style>
@@ -201,7 +234,7 @@
     function popup(i) {
         overlay.className = "show";
         popup.className = "show";
-        big.src = "img/" + i + ".jpg";
+        big.src = "img/" + i % 21 + ".jpg";
     }
 
     function closeAll() {
@@ -295,7 +328,7 @@
 
     for (j = 0; j < 61; j++) {
 
-        setTimeout("attach(" + j + ")", j * 300);
+        setTimeout("attach(" + j + ")", j * 150);
 
     }
 </script>
