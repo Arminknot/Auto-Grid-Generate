@@ -17,6 +17,17 @@
         body {
             margin: 0;
             padding: 0;
+            background: #000000;
+        }
+
+        #banner{
+font-family: iransansweb;
+font-size: 50px;
+color: #ffffff;
+width: 90%;
+height: 50px;
+margin:100px auto 0 auto;
+text-align: center;
         }
         
         #grid {
@@ -40,9 +51,9 @@
         #grid>.col>.item {
             overflow: hidden;
             cursor: zoom-in;
-            border: 0.5px solid #ccc;
+            border: 1px solid #000000;
             /*box-shadow: 0 0 10px 1px #ccc;*/
-            border-radius: 10px;
+            /*border-radius: 10px;*/
             margin-bottom: 5px;
             position: relative;
             perspective: 1000px;
@@ -65,7 +76,7 @@
             transform-origin: 0% 0%;
             direction: rtl;
             text-align: center;
-            background: rgb(0, 0, 0);
+            background: rgb(42, 31, 43);
             position: absolute;
             top: 0;
             left: 0;
@@ -204,6 +215,8 @@
 
 <body>
 
+    <div id="banner">گالری تصاویر</div>
+
     <div id="grid">
 
 
@@ -234,7 +247,7 @@
     function popup(i) {
         overlay.className = "show";
         popup.className = "show";
-        big.src = "img/" + i % 21 + ".jpg";
+        big.src = "img/" + i  + ".jpg";
     }
 
     function closeAll() {
@@ -310,7 +323,7 @@
 
     function attach(i) {
 
-        p1 = (i % 21 + 1);
+        p1 = (i + 1);
         p2 = "آیتم" + (i + 1);
         p3 = "توضیحات آیتم" + (i + 1);
         p4 = Math.round(Math.random() * 100000 + 1000) + "ریال";
@@ -326,7 +339,7 @@
         cols[i % num].appendChild(el);
     }
 
-    for (j = 0; j < 61; j++) {
+    for (j = 0; j < 46; j++) {
 
         setTimeout("attach(" + j + ")", j * 100);
 
